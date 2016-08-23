@@ -16,7 +16,7 @@ from PIL import Image, ImageTk
 import cv2
 
 programa = "Cético"
-versao = "Alpha 0.0.1.2"
+versao = "Alpha 0.0.1.3"
 
 
 
