@@ -11,24 +11,24 @@ from tkinter import messagebox
 
 def erroAbrirArquivo():
     try:
-        messagebox.showerror("ERRO!" , "Não foi possível carregar imagem.")
+        messagebox.showerror("ERRO!", "Não foi possível carregar imagem.")
     except:
         print("ERRO!" , "Não foi possível carregar imagem.")
 def erroImagemNaoCarregada():
     try:
-        messagebox.showerror("ERRO!" , "Não existe imagem carregada.")
+        messagebox.showerror("ERRO!", "Não existe imagem carregada.")
     except:
         print("ERRO!" , "Não existe imagem carregada.")
 def erroImp_Detecface():
     try:
         messagebox.showerror("ERRO!" , "Não foi possivel detectar faces")
     except:
-        print("ERRO!" , "Não foi possivel detectar faces")
+        print("ERRO!", "Não foi possivel detectar faces")
 def erroModuloGenérico():
     try:
         messagebox.showerror("ERRO!" , "Não executar o módulo selecionado.")
     except:
-        print("ERRO!" , "Não executar o módulo selecionado.")
+        print("ERRO!", "Não executar o módulo selecionado.")
 
 def dialogofechar():
     try:
@@ -37,22 +37,24 @@ def dialogofechar():
     except:
         print("saindo do cético")        
         exit()
-        
+
+
+
 def erroExif():
     try:
-        messagebox.showerror("Alerta!" , "Não foi possível carregar as \npropriedades(EXIF) da imagem.")
+        messagebox.showerror("Alerta!", "Não foi possível carregar as \npropriedades(EXIF) da imagem.")
     except:
-        print ("Alerta!" , "Não foi possível carregar as \npropriedades(EXIF) da imagem.")
+        print ("Alerta!", "Não foi possível carregar as \npropriedades(EXIF) da imagem.")
 
 def dialogo():
     try:
         messagebox.showerror("ERRO!" , "Função ainda não implementada.")
     except:
-        print ("ERRO!" , "Função ainda não implementada.")
+        print ("ERRO!", "Função ainda não implementada.")
     
      
 def erro_RetornoGenerico():
     try:
-        messagebox.showerror("ERRO!" , "Não foi possivel retornar os dados")
+        messagebox.showerror("ERRO!", "Não foi possivel retornar os dados")
     except:
-        print ("ERRO!" , "Não foi possivel retornar os dados.")
+        print ("ERRO!", "Não foi possivel retornar os dados.")

@@ -1,6 +1,6 @@
 # Cetico-TCC
 
-Cético é um software desenvolvido por Fausto Biazzi de Sousa como parte do Trabalho de Conclusão de Curso no Instituto Federal para Educação Ciência e Tecnologia de São Paulo (IFSP)- Campus Campinas, sob orientação do Profº Dr. Tiago Carvalho (@tiagojc), tendo por objetivo desenvolver uma interface gráfica prática que agregue algoritmos de analise forense de imagens digitais visando a detecção de adulterações de imagens.
+Cético é um software desenvolvido por Fausto Biazzi de Sousa como parte do Trabalho de Conclusão de Curso no Instituto Federal para Educação Ciência e Tecnologia de São Paulo (IFSP)- Campus Campinas, sob orientação do Profº Dr. Tiago Carvalho (https://github.com/tiagojc), tendo por objetivo desenvolver uma interface gráfica prática que agregue algoritmos de analise forense de imagens digitais visando a detecção de adulterações de imagens.
 
 Notas do desenvolvimento:
 
