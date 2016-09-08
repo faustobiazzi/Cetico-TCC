@@ -28,10 +28,10 @@ def detectorRosto(imagePath):
         gray,
         scaleFactor=1.1,
         minNeighbors=1,
-        minSize=(15, 15),
+        minSize=(30, 30),
         flags=cv2.CASCADE_SCALE_IMAGE)
 
-    #print(" {0} face(s) encontrada(s) automáticamente!".format(len(faces)))
+    print(" {0} face(s) encontrada(s) automáticamente!".format(len(faces)))
     try:
         return faces
     except:

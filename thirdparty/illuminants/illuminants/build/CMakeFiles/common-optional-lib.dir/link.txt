@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcommon-optional-lib.a  CMakeFiles/common-optional-lib.dir/optional.cpp.o
+/usr/bin/ranlib libcommon-optional-lib.a

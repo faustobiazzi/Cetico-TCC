@@ -1,0 +1,2 @@
+/usr/bin/ar qc libiic_commands-lib.a  CMakeFiles/iic_commands-lib.dir/command_iebv.cpp.o CMakeFiles/iic_commands-lib.dir/command_test_iebv.cpp.o CMakeFiles/iic_commands-lib.dir/config_iebv.cpp.o CMakeFiles/iic_commands-lib.dir/command_test_cache.cpp.o
+/usr/bin/ranlib libiic_commands-lib.a

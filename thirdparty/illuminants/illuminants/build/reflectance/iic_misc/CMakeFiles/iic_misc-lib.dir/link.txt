@@ -1,0 +1,2 @@
+/usr/bin/ar qc libiic_misc-lib.a  CMakeFiles/iic_misc-lib.dir/get_file.cpp.o
+/usr/bin/ranlib libiic_misc-lib.a

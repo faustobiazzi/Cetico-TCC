@@ -1,0 +1,2 @@
+/usr/bin/ar qc libiic_mask-lib.a  CMakeFiles/iic_mask-lib.dir/mask.cpp.o CMakeFiles/iic_mask-lib.dir/lehmann_palm.cpp.o
+/usr/bin/ranlib libiic_mask-lib.a

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcache-lib.a  CMakeFiles/cache-lib.dir/command_cache_adm.cpp.o CMakeFiles/cache-lib.dir/vole_cache_config.cpp.o CMakeFiles/cache-lib.dir/vole_cache_item.cpp.o
+/usr/bin/ranlib libcache-lib.a

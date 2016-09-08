@@ -1,0 +1,2 @@
+/usr/bin/ar qc libiic_eval-lib.a  CMakeFiles/iic_eval-lib.dir/command_iic_funt_eval.cpp.o CMakeFiles/iic_eval-lib.dir/iic_funt_eval_config.cpp.o CMakeFiles/iic_eval-lib.dir/plotter.cpp.o
+/usr/bin/ranlib libiic_eval-lib.a

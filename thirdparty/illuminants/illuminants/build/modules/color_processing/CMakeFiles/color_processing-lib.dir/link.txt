@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcolor_processing-lib.a  CMakeFiles/color_processing-lib.dir/pixel_operations.cpp.o
+/usr/bin/ranlib libcolor_processing-lib.a

@@ -24,9 +24,9 @@ def erroImp_Detecface():
         messagebox.showerror("ERRO!" , "Não foi possivel detectar faces")
     except:
         print("ERRO!", "Não foi possivel detectar faces")
-def erroModuloGenérico():
+def erroModuloGenérico(erro):
     try:
-        messagebox.showerror("ERRO!" , "Não executar o módulo selecionado.")
+        messagebox.showerror("ERRO!" , "Não executar o módulo selecionado. ("+erro+")")
     except:
         print("ERRO!", "Não executar o módulo selecionado.")
 
@@ -39,16 +39,16 @@ def dialogofechar():
         exit()
 
 
-
 def erroExif():
     try:
         messagebox.showerror("Alerta!", "Não foi possível carregar as \npropriedades(EXIF) da imagem.")
     except:
         print ("Alerta!", "Não foi possível carregar as \npropriedades(EXIF) da imagem.")
 
+
 def dialogo():
     try:
-        messagebox.showerror("ERRO!" , "Função ainda não implementada.")
+        messagebox.showerror("ERRO!", "Função ainda não implementada.")
     except:
         print ("ERRO!", "Função ainda não implementada.")
     

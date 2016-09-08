@@ -1,0 +1,2 @@
+/usr/bin/ar qc libiic-lib.a  CMakeFiles/iic-lib.dir/iic.cpp.o CMakeFiles/iic-lib.dir/tan.cpp.o CMakeFiles/iic-lib.dir/iebv.cpp.o CMakeFiles/iic-lib.dir/iebv_estimator.cpp.o
+/usr/bin/ranlib libiic-lib.a
