@@ -79,6 +79,7 @@ class Window:
         toolsmenu.add_command(label="Detector de rostos", command=self.menudetectaRosto)
         toolsmenu.add_command(label="Ler EXIF da imagem", command=self.propriedadesImg)
         toolsmenu.add_separator()
+
         # entradas de menu para códigos de terceiros
         toolsmenu.add_command(label="illuminants", command=self.illuminants)
         toolsmenu.add_command(label="copy-move detetector", command=dialogo)
@@ -183,7 +184,8 @@ class Window:
 
     def limparMarcas(self):
         if messagebox.askyesno("Limpar marcas",
-                               "isso ira remover todas as marcações feitas na imagem.\nTem certeza que deseja fazer isso?"):
+                               "isso ira remover todas as marcações feitas na imagem.\n"
+                               "Tem certeza que deseja fazer isso?"):
             self.canvas.delete("all")
             self.marcas = []
             self.canvas.create_image(self.x, self.y, anchor=NW, image=self.imagem)
@@ -192,17 +194,20 @@ class Window:
 
     def remUltimaMarca(self):
         if messagebox.askyesno("remover última marcação",
-                               "isso ira remover a última marcação feitas na imagem.\nTem certeza que deseja fazer isso?"):
+                               "isso ira remover a última marcação feitas na imagem.\n"
+                               "Tem certeza que deseja fazer isso?"):
             self.canvas.delete("all")
+
             self.marcas.pop()
             #del self.marcas[-1]
+
             self.canvas.create_image(self.x, self.y, anchor=NW, image=self.imagem)
             for (x0, y0, w1, h1) in self.marcas:
                 self.canvas.create_rectangle(x0, y0, x0 + w1, y0 + h1, fill=None, outline=self.corAutoMark, width=2)
             print("marcas apos remoção"+str(self.marcas))
 
     def menudetectaRosto(self):
-        if self.marcas > []:
+        if not self.marcas == []:
             if messagebox.askyesno("Alerta!",
                                    "já existem marcações feitas na imagem.\n Deseja apaga-las?"):
                 self.limparMarcas()
