@@ -163,7 +163,7 @@ class Window:
         self.marcas = []
 
     def about(self):
-        ajuda.janela()
+        Ajuda()
 
     def abrirImagem(self):
         self.marcas = []
@@ -207,20 +207,36 @@ class Window:
             print("marcas apos remoção"+str(self.marcas))
 
     def menudetectaRosto(self):
+        parametros = self.configDetecta()
         if not self.marcas == []:
             if messagebox.askyesno("Alerta!",
                                    "já existem marcações feitas na imagem.\n Deseja apaga-las?"):
                 self.limparMarcas()
-                self.detectaRosto()
+                self.detectaRosto(parametros)
             else:
-                self.detectaRosto()
+                self.detectaRosto(parametros)
         else:
-            self.detectaRosto()
+            self.detectaRosto(parametros)
 
-    def detectaRosto(self):
+    def configDetecta(self):
+        self.confDetecta = Tk()
+        self.confDetecta.title("Configurar " + programa + " " + versao)
+        self.confDetecta.resizable(width=FALSE, height=FALSE)
+
+        button = Button(self.confDetecta, text="Fechar", underline=0, command=self.fecharConfigura)
+        button.pack()
+        return self.fecharConfigura()
+
+    def fecharConfigura(self):
+
+        #self.confDetecta.destroy()
+        return [30, 30, 1, 1.1]
+
+    def detectaRosto(self, parametros):
+        print (parametros)
         if self.path != "":
             try:
-                face = buscarRosto(self.path)
+                face = buscarRosto(self.path, parametros)
             except:
                 erroImp_Detecface()
         else:
@@ -232,18 +248,17 @@ class Window:
     # acesso a funções de terceiros
 
     def illuminants(self):
-        resultado = illuminant(self.path, self.marcas)
-        print(resultado)
+        illuminant(self.path, self.marcas)
 
 
-class ajuda():
-    def janela():
-        filewin = Tk()
-        filewin.title("Sobre " + programa + " " + versao)
-        #filewin.iconbitmap("ICONE.ICO")
-        filewin.resizable(width=FALSE, height=FALSE)
-        #filewin.attributes("-toolwindow", 1)
-        filewinlabel = Label(filewin, text="Sobre o Cético... \n"
+class Ajuda():
+    def __init__(self):
+        self.filewin = Tk()
+        self.filewin.title("Sobre " + programa + " " + versao)
+
+        self.filewin.resizable(width=FALSE, height=FALSE)
+
+        filewinlabel = Label(self.filewin, text="Sobre o Cético... \n"
                                            + "Cético é um programa \ndesenvolvido pelo" +
                                            "Aluno Fausto Biazzi de Sousa \n como parte" +
                                            "integrante de seu \nTrabalho de Conclusão de Curso" +
@@ -251,16 +266,13 @@ class ajuda():
                                            "Desenvolvimento\n de Sistema no IFSP-Campinas.")
         filewinlabel.pack(side=TOP)
 
-        button = Button(filewin, text="Fechar", underline=0, command=filewin.destroy)
+        button = Button(self.filewin, text="Fechar", underline=0, command=self.filewin.destroy)
         button.pack(side=BOTTOM)
 
         w = 300
         h = 400
         # redimendiona janela pro tamanho definido
-        filewin.geometry("%dx%d" % (w, h))
-
-    def ok(self):
-        self.destroy()
+        self.filewin.geometry("%dx%d" % (w, h))
 
 
 

@@ -17,10 +17,10 @@ from thirdparty._illuminants import *
 from tkinter import *
 
 
-def buscarRosto(imagePath):
+def buscarRosto(imagePath, values):
     try:
-        # configuraFace()
-        face = detectorRosto(imagePath)
+
+        face = detectorRosto(imagePath, values)
 
         return face
     except:
@@ -41,7 +41,7 @@ def illuminant(imagePath, vetorDeFaces):
             try:
                 # ret = recebeImagemaSerAnalisada(imagePath, vetorDeFaces)
                 print("entrou na função illuminantes")
-                ret = janela(imagePath, vetorDeFaces)
+                ret = Illuminants(imagePath, vetorDeFaces)
 
                 return ret
             except NameError:
