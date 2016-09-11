@@ -9,12 +9,14 @@ Created on Fri Apr 15 01:03:58 2016
 
 #sub-sistemas
 from __error import *
+from tkinter import *
+import os
 
-#modulos de funç
+
+#modulos de funções
 from facedetector.detectaface import *
 from imageproperties.lerExif import lertag
 from thirdparty._illuminants import *
-from tkinter import *
 
 
 def buscarRosto(imagePath, values):
@@ -35,19 +37,11 @@ def propriedadesImagem(imagePath):
         erroExif()
 
 
-def illuminant(imagePath, vetorDeFaces):
-    if vetorDeFaces != []:
-        if imagePath != "":
-            try:
-                # ret = recebeImagemaSerAnalisada(imagePath, vetorDeFaces)
-                print("entrou na função illuminantes")
-                ret = Illuminants(imagePath, vetorDeFaces)
-
-                return ret
-            except NameError:
-                erroModuloGenérico(str(NameError))
-        else:
-            erroImagemNaoCarregada()
-    else:
-        erro_RetornoGenerico()
+def Moduloilluminant(operacao, imagePath, vetorDeFaces):
+    if operacao == "segmentar":
+        SegmentaçãoDeimagens(imagePath)
+        extrairGGE()
+        extrairIIC()
+    if operacao == "TODOS" or "acc" or "bic" or  "ccv" or  "eoac" or  "las" or  "lch" or  "sasi" or  "spytec" or  "unser":
+        extrairDescritores(operacao)
 

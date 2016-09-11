@@ -14,14 +14,14 @@ import os
 def detectorRosto(imagePath, propriedades):
 
     minX, minY, minNei, scale = propriedades
+    script_dir = os.path.dirname(__file__)
     if platform.system() == 'Windows':
-        script_dir = os.path.dirname(__file__)
         cascPath = script_dir+"\default.xml"
         print(cascPath)
     else:
-        cascPath = "./facedetector/default.xml"
+        cascPath = script_dir+"/default.xml"
 
-    print("detecta rostos" + imagePath)
+    #print("detecta rostos" + imagePath)
     faceCascade = cv2.CascadeClassifier(cascPath)
     image = cv2.imread(imagePath)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)

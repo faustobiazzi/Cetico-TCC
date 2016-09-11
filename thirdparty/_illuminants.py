@@ -1,109 +1,85 @@
 # -*- coding: utf-8 -*-
+"""
+Created on Mon Sep 12 10:51:18 2016
 
-from tkinter import *
+@author: Fausto Biazzi de Sousa
+programa = "Cético"
+versão = "Alpha 0.0.0.3"
+
+"""
+
+import shutil
+import platform
+import os
+
 
 programa = "Cético"
-Modulo= "Illuminants"
+Modulo = "Illuminants"
 
 
-class Illuminants:
-    path = ""
-    faces = []
+def SegmentaçãoDeimagens(path):
 
-    def __init__(self,caminho,lista):
-        self.path = caminho
-        self.faces = lista
+    database_file = os.path.dirname(__file__)+"/illuminants/data-base/images/"
+    segmented_dir = os.path.dirname(__file__) + "/illuminants/data-base/segmented/"
+    os.system("rm -f " + segmented_dir + "*")
 
-        self.definePropriedades = Tk()
-        self.definePropriedades.title("Illuminants -propriedades")
+    copiarImagemDatabase(path)
 
-        label = Label(self.definePropriedades, text="Selecione os descritores desjados:")
-
-        var1 = IntVar()
-        var2 = IntVar()
-        var3 = IntVar()
-        var4 = IntVar()
-        var5 = IntVar()
-        var6 = IntVar()
-        var7 = IntVar()
-        var8 = IntVar()
-        var9 = IntVar()
-        var0 = IntVar()
-
-        C1 = Checkbutton(self.definePropriedades, anchor=W, text="ACC", variable=var1, offvalue=0, height=2, width=20)
-        C2 = Checkbutton(self.definePropriedades, anchor=W, text="BIC", variable=var2, offvalue=0, height=2, width=20)
-        C3 = Checkbutton(self.definePropriedades, anchor=W, text="CCV", variable=var3, offvalue=0, height=2, width=20)
-        C4 = Checkbutton(self.definePropriedades, anchor=W, text="EOAC", variable=var4, offvalue=0, height=2, width=20)
-        C5 = Checkbutton(self.definePropriedades, anchor=W, text="LAS", variable=var5, offvalue=0, height=2, width=20)
-        C6 = Checkbutton(self.definePropriedades, anchor=W, text="LCH", variable=var6, offvalue=0, height=2, width=20)
-        C7 = Checkbutton(self.definePropriedades, anchor=W, text="SASI", variable=var7, offvalue=0, height=2, width=20)
-        C8 = Checkbutton(self.definePropriedades, anchor=W, text="SPYTEC", variable=var8, offvalue=0, height=2, width=20)
-        C9 = Checkbutton(self.definePropriedades, anchor=W, text="UNSER", variable=var9, offvalue=0, height=2, width=20)
-
-        # Para extrair descritor de imagens do illuminats maps (IIC e GGE) de todas as imagens na pasta
-        # /database/images/ execute a função ./sourcecode/extractAllFeatureVectors.py <DS>
-        # Onde DS é uma string que representa o descritor a ser extraido,
-        # exemplo para o comand de TODOS os descritores
-
-        C0 = Checkbutton(self.definePropriedades, anchor=W, text="TODOS", variable=var0, offvalue=0, height=2, width=20)
-
-        Executar = Button(self.definePropriedades, text="Executar", command=self.extrairdescritores)
-
-        label.pack()
-        C1.pack()
-        C2.pack()
-        C3.pack()
-        C4.pack()
-        C5.pack()
-        C6.pack()
-        C7.pack()
-        C8.pack()
-        C9.pack()
-        C0.pack()
-        Executar.pack()
-        self.listvet()
+    #script_file = "." + os.path.dirname(__file__) + "/illuminants/sourcecode/segmentAllImagesForIlluminantMethod.py"
+    #os.system(script_file)
 
 
-
-    def listvet(self):
-
-        self.vetReceb = Tk()
-        self.vetReceb.title("Coordenadas")
-        print("entrou lista de vetores")
-        self.vetReceb.resizable(width=FALSE, height=FALSE)
-
-        scrollbar = Scrollbar(self.vetReceb)
-        scrollbar.pack(side=RIGHT, fill=Y)
-        w = 150
-        h = 400
-
-        lista = Listbox(self.vetReceb, yscrollcommand=scrollbar.set)
-        for line in self.faces:
-            lista.insert(END, str(line))
-
-        lista.pack(side=LEFT, fill=BOTH)
-        scrollbar.config(command=lista.yview)
-
-        self.vetReceb.geometry("%dx%d+%d+%d" % (w, h, self.vetReceb.winfo_screenwidth()-(w+10), 100))
-
-        mainloop()
-
-    def extrairdescritores(self):
-        print("entrou em extrair descritores"+ self.path, self.faces)
-
-    def recebeImagemaSerAnalisada(self):
-        #entrar em database imagens e inserir a imagem a ser analisada, remover imagens anteriores
-        #executar a função /source-code/segmentAllImagesForIlluminantMethod.py
+    application_dir = os.path.dirname(__file__)+"/illuminants/illuminants/build/bin/"
+    string = application_dir + "./vole felzenszwalb -I " + path + " --deterministic_coloring -O " + segmented_dir + "file.png --k 200 --max_intensity 255"
+    print(string)
+    os.system(string)
 
 
-        return 'teste'
+def copiarImagemDatabase(path):
+    database_dir = os.path.dirname(__file__)
+    database_dir += "/illuminants/data-base/images/"
+    os.system("rm -f "+database_dir+"*")
+    shutil.copy2(path, database_dir)
+    resposta=("imagem copiada de %s para %s", path, database_dir)
 
 
-def main():
-    path = "/home/fausto/Dropbox/Ceticov1.6/imagens/pessoas.jpg"
-    faces = [(202, 89, 45, 58)]
-    Illuminants(path, faces)
+def extrairIIC():
+    try:
+        script_file = os.path.dirname(__file__) + "/illuminants/sourcecode/./extractIICMaps.py"
+        print(script_file)
+        os.system(script_file)
+    except:
+        pass
 
-if __name__ == '__main__':
-    main()
 
+def extrairGGE():
+    try:
+        script_file = os.path.dirname(__file__) + "/illuminants/sourcecode/./extractGGEMaps.py"
+
+        print(script_file)
+        os.system(script_file)
+    except:
+        pass
+
+def extrairDescritores(descritor):
+    if descritor == "TODOS":
+        print(descritor)
+        todos = ["acc", "bic", "ccv", "eoac", "las", "lch", "sasi", "spytec", "unser"]
+        for descriptor in todos:
+            script_file = os.path.dirname(__file__) + "/descriptors/" + descriptor + "/source/app/./extractGGEMaps.py"
+            print(script_file)
+            os.system(script_file)
+
+
+    if descritor == "acc" or "bic" or "ccv" or "eoac" or "las" or "lch" or "sasi" or "spytec" or "unser":
+        print(descritor)
+        script_file = os.path.dirname(__file__) + "/descriptors/"+descritor+"/source/app"
+        print(script_file)
+        os.system(script_file)
+
+
+def gerarTXTcomFacePositions(self, listadefaces):
+    return 0
+
+def apagarArquivos(caminhoImageTrabalho, caminhoImagensSegmentadas, caminhosArquivosTXT):
+    return 0

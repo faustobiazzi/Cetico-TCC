@@ -1,3 +1,3 @@
 @echo off
-python interface.py
+python cetico.py
 pause
