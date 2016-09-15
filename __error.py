@@ -38,6 +38,13 @@ def dialogofechar():
         print("saindo do cético")        
         exit()
 
+def funcaoIndisponivel(sistema):
+    try:
+        messagebox.showerror("Alerta!", "Talvez não seja possivel executar essa função\n "
+                             "Ela possivelmente ela ainda nao foi portada pro seu "+sistema+"."
+                             "Verifique a lista de algoritmos portados no nosso LEIA-ME.TXT")
+    except:
+        print ("Alerta!", "Não foi possível carregar as \npropriedades(EXIF) da imagem.")
 
 def erroExif():
     try:

@@ -37,11 +37,12 @@ def propriedadesImagem(imagePath):
         erroExif()
 
 
-def Moduloilluminant(operacao, imagePath, vetorDeFaces):
-    if operacao == "segmentar":
-        SegmentaçãoDeimagens(imagePath)
+def Moduloilluminant(operacao, valores, imagePath, vetorDeFaces):
+    if platform.system() == 'Windows':
+        funcaoIndisponivel(platform.system())
+        print(platform.system())
+    else:
+        SegmentaçãoDeimagens(valores, imagePath)
         extrairGGE()
         extrairIIC()
-    if operacao == "TODOS" or "acc" or "bic" or  "ccv" or  "eoac" or  "las" or  "lch" or  "sasi" or  "spytec" or  "unser":
         extrairDescritores(operacao)
-

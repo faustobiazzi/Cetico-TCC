@@ -323,8 +323,8 @@ class Cetico():
     # acesso a módulos de terceiros
 
     def illuminants(self):
-        if self.VarIllum == False:
-            if self.marcas != []:
+        if self.marcas ==[]:
+            if self.VarIllum == False:
                 if self.path != "":
                     try:
                         self.janelaIlluminants()
@@ -333,8 +333,8 @@ class Cetico():
                         erroModuloGenérico(str(NameError))
                 else:
                     erroImagemNaoCarregada()
-            else:
-                erro_RetornoGenerico()
+        else:
+            erroModuloGenérico()
 
     def janelaIlluminants(self):
 
@@ -381,6 +381,7 @@ class Cetico():
             print(comando)
 
         def janelaModulosExtracao(_self):
+
             def verificaChkBox():
                 if var0.get():
                     var1.set(0), var2.set(0), var3.set(0), var4.set(0), var5.set(0), var6.set(0), var7.set(0), var8.set(
@@ -432,14 +433,72 @@ class Cetico():
             Button(_self.j_illuminants, underline= 2,text=u"Executar",
                    command=lambda: extrairDescritoresdaImagem(var1.get(), var2.get(), var3.get(), var4.get(), var5.get(), var6.get(), var7.get(), var8.get(), var9.get(), var0.get())).grid(row=10, column=2)
 
-        Moduloilluminant("segmentar", self.path, self.marcas)
-        janelaModulosExtracao(sub)
+        def janelaModulosSegmentar(_self):
+
+            '''
+            Módulos Vole
+            Bayesian:	Bayesian illuminant estimator.
+            cache_adm:	Cache administration tool
+            felzenszwalb:	Superpixel segmentation by Felzenszwalb and Huttenlocher.
+            grayworld:	Generalized Gray World illuminant estimator.
+            gwOrig:	Perform original (orthodox) Grayworld on a single image (no superpixels).
+            iebv2:	Illuminant Estimation by Voting (modularized version)
+            iic_funt:	Evaluation of IIC-based methods on the Ciurea/Funt database
+            lbayesian:	Locally applied illuminant estimator, using the generalized Bayesian algorithm.
+            lcolfield:	Local Coloring of Illuminant Estimates
+            lgrayworld:	Locally applied illuminant estimator, using the generalized Gray World algorithm.
+            liebv:	Locally applied illuminant estimator, using IEBV.
+            ltan:	Locally applied illuminant estimator, using IEBV.
+            srgb2rgb:	Convert an sRGB image to RGB
+            tanOrig:	Perform original (orthodox) Tan on a single image (no superpixels).
+            test_cache:	Illuminant Estimation by Voting (modularized version)
+            veksler:	Superpixel segmentation by Veksler et al..'''
+
+            def verificaRadioButton(modulo):
+                print(modulo.get())
+
+
+                if modulo.get() == "Illu":
+                    valores = [modulo.get(), "", "", "", ""]
+                    Moduloilluminant("segmentar", valores, self.path, self.marcas)
+
+            _self.j_Segmentar = Toplevel(self.interface)
+            _self.j_Segmentar.wm_protocol("WM_DELETE_WINDOW", lambda: _self.fecharJanelasSubordinadas("Illuminants"))
+
+            MODES = [
+                ("Illuminant Method", "Illu"),
+                ("Bayesian", "Bayesian"),
+                ("Felzenszwalb", "felzenszwalb"),
+                ("Grayworld", "grayworld"),
+                ("Grayworld Original", "gwOrig"),
+                ("IIC-based methods", "iic_funt"),
+                ("Local Coloring of Illuminant Estimates", "lcolfield"),
+                ("Locally grayworld", "lgrayworld"),
+                ("Locally applied illuminant estimator, using IEBV", "liebv"),
+                ("Locally applied illuminant estimator, using Tan", "ltan"),
+                ("SRGB 2 RGB", "srgb2rgb"),
+                ("Original Tan Method (sem superpixels)", "tanOrig/"),
+                ("Veksler", "veksler")]
+
+            v = StringVar()
+            buttom = Button(_self.j_Segmentar, underline=2, text=u"Executar", command=lambda: verificaRadioButton(v))
+            buttom.pack(anchor=W)
+            for text, mode in MODES:
+
+                b = Radiobutton(_self.j_Segmentar, text=text,variable=v, value=mode)
+                b.pack(anchor=W)
+
+
+
+       # janelaModulosSegmentar(sub)
+
 
 
     def fecharJanelasSubordinadas(self, janela):
         if janela =="Illuminants":
             self.VarIllum = False
             self.j_illuminants.destroy()
+            self.j_Segmentar.destroy()
 
         if janela =="Sobre":
             self.Varabout = False
