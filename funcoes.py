@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Apr 15 01:03:58 2016
+Modified on Sun Sep 18 08:42:55 2016
 @author: Fausto Biazzi de Sousa
 @modulo: funções do aplicativo (pseudo interface)
 @programa: "Cético"
@@ -37,12 +37,28 @@ def propriedadesImagem(imagePath):
         erroExif()
 
 
-def Moduloilluminant(operacao, valores, imagePath, vetorDeFaces):
+    
+def Moduloilluminant(operacao, imagePath, vetorDeFaces):
     if platform.system() == 'Windows':
         funcaoIndisponivel(platform.system())
         print(platform.system())
     else:
-        SegmentaçãoDeimagens(valores, imagePath)
+        print("iniciando módulo illuminants")
+        limparTudo()
+        print("Pastas limpas")
+        SegmentacaoDeimagens(imagePath)
+        print("Imagem Segmentada")
         extrairGGE()
+        print("Extraído GGE")
         extrairIIC()
-        extrairDescritores(operacao)
+        print("Extraído IIC")
+        gerarTXTcomFacePositions(vetorDeFaces)
+        print("Gerada posições de faces")
+        extrairFeaturesVector(operacao)
+        print("Vetores extraídos")
+        limparPastasTemporarias()
+        print("Limpando pastas temporárias")
+        resultado =classificadorSVMCetico(operacao)
+        print("Concluida analise SVM")
+        analiseIlluminantsterminada()
+    return resultado

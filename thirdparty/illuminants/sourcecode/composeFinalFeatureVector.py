@@ -1,7 +1,8 @@
-import segmentImage
-import extractDescriptor
+from thirdparty.illuminants.sourcecode import segmentImage
+from thirdparty.illuminants.sourcecode import extractDescriptor
 import os
 import time
+import re
 
 # Build face's pairs of descriptors
 # IN:
@@ -14,16 +15,19 @@ import time
 # OUT:
 #   all possible combination of faces pairs for a given image
 
-def composeFinalFeatureVector(image,descriptor="ACC",space=4,channel=3,illuminantType="GGE"):
-    numberFaces = segmentImage.segmentImage(image,illuminantType)
+#def composeFinalFeatureVector(folder, image,descriptor="ACC",space=4,channel=3,illuminantType="GGE"):
+def composeFinalFeatureVector(folder, image,descriptor,space,channel,illuminantType):
+    print ("illuminant type = %s %s %s %d %s"%(illuminantType, image,descriptor,space,channel))
+    numberFaces = segmentImage.segmentImage(folder, image, illuminantType)
     cont = 1
     print("Number of faces: %d\nCharacterizing faces..." %numberFaces)
     while (cont <= numberFaces):
-        faceName = "../data-base/faces/face-" + str(cont) + ".png"
-        extractDescriptor.extractDescriptor(faceName,descriptor,space,channel)
+        faceName = ""+folder+"/illuminants/temp/faces/face-" + str(cont) + ".png"
+        extractDescriptor.extractDescriptor(folder, faceName, descriptor, space, channel)
         cont = cont + 1
-        nameFaces = "../face-positions/" + image[:-4] + ".txt"
-    facesFile = open(nameFaces,"rt")
+        nameFaces = ""+folder+"/illuminants/face-positions/" + image[:-4] + ".txt"
+
+    facesFile = open(nameFaces, "rt")
     lines = facesFile.readlines()
     facesFile.close()
     firstFace = 1
@@ -36,6 +40,7 @@ def composeFinalFeatureVector(image,descriptor="ACC",space=4,channel=3,illuminan
         secondFace = firstFace + 1
         lineFace1 = lines[(firstFace - 1)].split("\t")
         stateFace1 = lineFace1[1]
+
         while (secondFace <= numberFaces):
             contVectors = contVectors + 1
             newVector = []
@@ -47,8 +52,9 @@ def composeFinalFeatureVector(image,descriptor="ACC",space=4,channel=3,illuminan
                 label = -1
             newVector.append(label)
             if (descriptor == "acc"):
-                nf1 = "../temp/faces/face-" + str(firstFace) + "-acc-descriptor.txt"
-                nf2 = "../temp/faces/face-" + str(secondFace) + "-acc-descriptor.txt"
+
+                nf1 = ""+folder+"/illuminants/temp/faces/face-" + str(firstFace) + "-acc-descriptor.txt"
+                nf2 = ""+folder+"/illuminants/temp/faces/face-" + str(secondFace) + "-acc-descriptor.txt"
                 files = open(nf1,"rt")
                 files.seek(0)
                 temp = files.readline()
@@ -72,8 +78,8 @@ def composeFinalFeatureVector(image,descriptor="ACC",space=4,channel=3,illuminan
                         newVector.append(float(desc[cont]))
                         cont = cont + 1
             elif (descriptor == "bic"):
-                nf1 = "../temp/faces/face-" + str(firstFace) + "-bic-descriptor.txt"
-                nf2 = "../temp/faces/face-" + str(secondFace) + "-bic-descriptor.txt"
+                nf1 = ""+folder+"/illuminants/temp/faces/face-" + str(firstFace) + "-bic-descriptor.txt"
+                nf2 = ""+folder+"/illuminants/temp/faces/face-" + str(secondFace) + "-bic-descriptor.txt"
                 files = open(nf1,"rb")
                 files.seek(0)
                 temp = files.readline()
@@ -98,8 +104,8 @@ def composeFinalFeatureVector(image,descriptor="ACC",space=4,channel=3,illuminan
                         newVector.append(float(desc[cont]))
                         cont = cont + 1
             elif (descriptor == "las"):
-                nf1 = "../temp/faces/face-" + str(firstFace) + "-las-descriptor.txt"
-                nf2 = "../temp/faces/face-" + str(secondFace) + "-las-descriptor.txt"
+                nf1 = ""+folder+"/illuminants/temp/faces/face-" + str(firstFace) + "-las-descriptor.txt"
+                nf2 = ""+folder+"/illuminants/temp/faces/face-" + str(secondFace) + "-las-descriptor.txt"
                 files = open(nf1,"rt")
                 files.seek(0)
                 temp = files.readline()
@@ -123,8 +129,8 @@ def composeFinalFeatureVector(image,descriptor="ACC",space=4,channel=3,illuminan
                         newVector.append(float(desc[cont]))
                         cont = cont + 1
             elif (descriptor == "sasi"):
-                nf1 = "../temp/faces/face-" + str(firstFace) + "-sasi-descriptor.txt"
-                nf2 = "../temp/faces/face-" + str(secondFace) + "-sasi-descriptor.txt"
+                nf1 = ""+folder+"/illuminants/temp/faces/face-" + str(firstFace) + "-sasi-descriptor.txt"
+                nf2 = ""+folder+"/illuminants/temp/faces/face-" + str(secondFace) + "-sasi-descriptor.txt"
                 files = open(nf1,"rt")
                 files.seek(0)
                 temp = files.readline()
@@ -148,8 +154,8 @@ def composeFinalFeatureVector(image,descriptor="ACC",space=4,channel=3,illuminan
                         newVector.append(float(desc[cont]))
                         cont = cont + 1
             elif (descriptor == "unser"):
-                nf1 = "../temp/faces/face-" + str(firstFace) + "-unser-descriptor.txt"
-                nf2 = "../temp/faces/face-" + str(secondFace) + "-unser-descriptor.txt"
+                nf1 = ""+folder+"/illuminants/temp/faces/face-" + str(firstFace) + "-unser-descriptor.txt"
+                nf2 = ""+folder+"/illuminants/temp/faces/face-" + str(secondFace) + "-unser-descriptor.txt"
                 files = open(nf1,"rt")
                 files.seek(0)
                 temp = files.readline()
@@ -173,8 +179,8 @@ def composeFinalFeatureVector(image,descriptor="ACC",space=4,channel=3,illuminan
                         newVector.append(float(desc[cont]))
                         cont = cont + 1
             elif (descriptor == "spytec"):
-                nf1 = "../temp/faces/face-" + str(firstFace) + "-spytec-descriptor.txt"
-                nf2 = "../temp/faces/face-" + str(secondFace) + "-spytec-descriptor.txt"
+                nf1 = ""+folder+"/illuminants/temp/faces/face-" + str(firstFace) + "-spytec-descriptor.txt"
+                nf2 = ""+folder+"/illuminants/temp/faces/face-" + str(secondFace) + "-spytec-descriptor.txt"
                 files = open(nf1,"rt")
                 files.seek(0)
                 temp = files.readline()
@@ -198,8 +204,8 @@ def composeFinalFeatureVector(image,descriptor="ACC",space=4,channel=3,illuminan
                         newVector.append(float(desc[cont]))
                         cont = cont + 1
             elif (descriptor == "ccv"):
-                nf1 = "../temp/faces/face-" + str(firstFace) + "-ccv-descriptor.txt"
-                nf2 = "../temp/faces/face-" + str(secondFace) + "-ccv-descriptor.txt"
+                nf1 = ""+folder+"/illuminants/temp/faces/face-" + str(firstFace) + "-ccv-descriptor.txt"
+                nf2 = ""+folder+"/illuminants/temp/faces/face-" + str(secondFace) + "-ccv-descriptor.txt"
                 files = open(nf1,"rt")
                 files.seek(0)
                 temp = files.readline()
@@ -219,8 +225,8 @@ def composeFinalFeatureVector(image,descriptor="ACC",space=4,channel=3,illuminan
                     cont = 0
                     newVector.append(float(desc[0]))
             elif (descriptor == "lch"):
-                nf1 = "../temp/faces/face-" + str(firstFace) + "-lch-descriptor.txt"
-                nf2 = "../temp/faces/face-" + str(secondFace) + "-lch-descriptor.txt"
+                nf1 = ""+folder+"/illuminants/temp/faces/face-" + str(firstFace) + "-lch-descriptor.txt"
+                nf2 = ""+folder+"/illuminants/temp/faces/face-" + str(secondFace) + "-lch-descriptor.txt"
                 files = open(nf1,"rt")
                 files.seek(0)
                 temp = files.readline()
@@ -244,8 +250,8 @@ def composeFinalFeatureVector(image,descriptor="ACC",space=4,channel=3,illuminan
                         newVector.append(float(desc[cont]))
                         cont = cont + 1
             elif (descriptor == "eoac"):
-                nf1 = "../temp/faces/face-" + str(firstFace) + "-eoac-descriptor.txt"
-                nf2 = "../temp/faces/face-" + str(secondFace) + "-eoac-descriptor.txt"
+                nf1 = ""+folder+"/illuminants/temp/faces/face-" + str(firstFace) + "-eoac-descriptor.txt"
+                nf2 = ""+folder+"/illuminants/temp/faces/face-" + str(secondFace) + "-eoac-descriptor.txt"
                 files = open(nf1,"rt")
                 files.seek(0)
                 temp = files.readline()
@@ -268,17 +274,25 @@ def composeFinalFeatureVector(image,descriptor="ACC",space=4,channel=3,illuminan
                     while (cont < (len(desc) - 1)):
                         newVector.append(float(desc[cont]))
                         cont = cont + 1
-            nnf1 = "../temp/faces/" + image[:-4] + "-" + nf1[14:-4] + "-label-" + str(stateFace1) + ".txt"
+
+            nf =nf1
+            nf = nf.replace(str(folder) + "/illuminants/temp/faces/", "")
+            nnf1 = ""+folder+"/illuminants/temp/faces/" + image[:-4] + "-" + nf[:-4] + "-label-" + str(stateFace1) + ".txt"
             command = "cp " + nf1 + " " + nnf1
             os.system(command)
-            nnf2 = "../temp/faces/" + image[:-4] + "-" + nf2[14:-4] + "-label-" + str(stateFace2) + ".txt"
+
+            nf = nf2
+            nf = nf.replace(str(folder) + "/illuminants/temp/faces/", "")
+            nnf2 = ""+folder+"/illuminants/temp/faces/" + image[:-4] + "-" + nf[:-4] + "-label-" + str(stateFace2) + ".txt"
             command = "cp " + nf2 + " " + nnf2
             os.system(command)
+
             allVectors.append(newVector)
             secondFace = secondFace + 1
         firstFace = firstFace + 1
-        nameFile = "../temp/vectors/fv-" + image[:-4] + ".txt"
+        nameFile = ""+folder+"/illuminants/temp/vectors/fv-" + image[:-4] + ".txt"
         files = open(nameFile,"wt")
+        print("gerou arquivo fv"+str(nameFile))
         files.seek(0)
         for i in allVectors:
             temp = i
@@ -295,8 +309,4 @@ def composeFinalFeatureVector(image,descriptor="ACC",space=4,channel=3,illuminan
         files.close()
     return numberFaces
 
-
-
-
-
-#composeFinalFeatureVector("splicing-01.png")
+# composeFinalFeatureVector("splicing-01.png")

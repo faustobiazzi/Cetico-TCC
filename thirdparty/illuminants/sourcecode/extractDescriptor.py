@@ -13,12 +13,15 @@ from subprocess import *
 # OUT:
 #   a text file containing descriptor values
 
-def extractDescriptor(fileName,descriptor,space,channel):
-    descriptorName = "../temp/faces/" + fileName[19:-4] + "-" + descriptor + "-descriptor.txt"
+def extractDescriptor(folder, fileName,descriptor,space,channel):
+
+    descriptorName = "" + fileName[:-4] + "-" + descriptor + "-descriptor.txt"
+    print ("extractDescriptor recebeu "+descriptorName)
     nameSpace = ""
     nname = fileName
-
+    print(str(nname))
     newName = nname[:-3] + "ppm"
+    print (str(newName))
     sourceImg = cv2.imread(fileName)
     if space == 0:
         destImg = cv2.cvtColor(sourceImg, cv2.COLOR_BGR2HSV)
@@ -39,8 +42,10 @@ def extractDescriptor(fileName,descriptor,space,channel):
 
     upperDesc = descriptor.upper()
     if (upperDesc == "ACC") or (upperDesc == "BIC") or (upperDesc == "LCH") or (upperDesc == "CCV"):
-        command = "../descriptors/" + descriptor + "/source/bin/./" + descriptor + "_extraction " + newName + " " + descriptorName
+        command = folder+"/illuminants/descriptors/" + descriptor + "/source/bin/./" + descriptor + "_extraction " + newName + " " + descriptorName
+        print("Executou descritor ACC ou BIC ou LCH ou CCV")
     else:
-        command = "../descriptors/" + descriptor + "/source/bin/./" + descriptor + "_extraction " + newName + " " + descriptorName + " " + str(channel)
+        command = folder+"/illuminants/descriptors/" + descriptor + "/source/bin/./" + descriptor + "_extraction " + newName + " " + descriptorName + " " + str(channel)
+        print("Executou descritor outros descritores")
     os.system(command)
 

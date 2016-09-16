@@ -9,9 +9,13 @@ from subprocess import *
 # OUT:
 #   the numbers of segmented faces in te image
 
-def segmentImage(fileName,illuminantType):
-    nameFaces = "../face-positions/" + fileName[:-4] + ".txt"
+
+def segmentImage(basefolder, fileName, illuminantType):
+    print("Entrou em segmentImage")
+    nameFaces = str(basefolder)+"/illuminants/face-positions/" + fileName[:-4] + ".txt"
+    print("nameFaces recebeu = "+str(nameFaces))
     facesFile = open(nameFaces,"rt")
+    print(str("faceFile recebeu "+str(facesFile)))
     lines = facesFile.readlines()
     facesFile.close()
     cont = 1
@@ -24,12 +28,17 @@ def segmentImage(fileName,illuminantType):
             toplefty = int(temp[4])
             bottomrightx = int(temp[3])
             bottomrighty = int(temp[5])
-            box = (topleftx,toplefty,bottomrightx,bottomrighty)
-            pathImage = "../data-base/" + illuminantType + "/" + fileName[:-4] + "_fhs.png"
+
+            box = (topleftx, toplefty, bottomrightx, bottomrighty)
+            print("box recebeu"+str(box))
+            pathImage = str(basefolder)+"/illuminants/data-base/" + illuminantType + "/" + fileName[:-4] + "_fhs.png"
+            print ("pathImage recebeu = "+ pathImage)
             im = cv2.imread(pathImage)
-            region = im[toplefty:bottomrighty,topleftx:bottomrightx]
-            nameFace = "../data-base/faces/face-" + str(cont) + ".png"
-            cv2.imwrite(nameFace,region)
+            region = im[toplefty:bottomrighty, topleftx:bottomrightx]
+            nameFace = str(basefolder)+"/illuminants/temp/faces/face-" + str(cont) + ".png"
+            print("nameFace recebeu = "+str(nameFace))
+            cv2.imwrite(nameFace, region)
             numberOfFaces = cont
             cont = cont + 1
+    print("encerrou segmentimage.py")
     return numberOfFaces

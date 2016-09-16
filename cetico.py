@@ -1,23 +1,25 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Sep 13 19:03:58 2016
+Created on Sun Sep 18 08:42:55 2016
 
 @author: Fausto Biazzi de Sousa
 @modulo: interface gráfica Cético + funções.
-programa = "Cético"
-versão = "Alpha 0.0.2.1"
+@programa = "Cético"
+@versão = "Alpha 0.0.2.4"
 
 """
 
 
 programa = "Cético"
-versao = "Alpha 0.0.2.1"
+versao = "Alpha 0.0.2.3"
 
 from funcoes import *
 from __error import *
 from tkinter import messagebox
 from tkinter.filedialog import askopenfilename
 from PIL import Image, ImageTk
+import tkinter.ttk as ttk
+import time
 
 
 class Cetico():
@@ -108,18 +110,19 @@ class Cetico():
     # comandos de arquivo
 
     def abrirImagem(self):
+        self.path = askopenfilename(
+        filetypes=(("Todos os Arquivos", "*.*"), ("imagem JPG", "*.jpg\;*.jpeg"), ("imagem bitmap", "*.bmp"),
+                   ("imagem PNG", "*.png")),
+        title="Selecione um arquivo.")
         if self.marcas != []:
             try:
+                self.canvas.delete(ALL)
+                self.marcas = []
                 self.atualizarMarcas()
                 self.vetReceb.destroy()
             except:
                 print ("erro")
 
-        self.marcas = []
-        self.path = askopenfilename(
-        filetypes=(("Todos os Arquivos", "*.*"), ("imagem JPG", "*.jpg\;*.jpeg"), ("imagem bitmap", "*.bmp"),
-                   ("imagem PNG", "*.png")),
-        title="Selecione um arquivo.")
         self.imagem = ImageTk.PhotoImage(Image.open(self.path))
         self.canvas.create_image(self.canvasX, self.canvasY, anchor=NW, image=self.imagem)
 
@@ -174,7 +177,6 @@ class Cetico():
             self.canvas.delete("all")
 
             self.marcas.pop()
-            #del self.marcas[-1]
 
             self.canvas.create_image(self.canvasX, self.canvasY, anchor=NW, image=self.imagem)
             for (x0, y0, w1, h1) in self.marcas:
@@ -323,64 +325,91 @@ class Cetico():
     # acesso a módulos de terceiros
 
     def illuminants(self):
-        if self.marcas ==[]:
-            if self.VarIllum == False:
-                if self.path != "":
+        if self.VarIllum == False:
+            if self.path != "":
+                if self.marcas != [] and len(self.marcas)>1:
                     try:
                         self.janelaIlluminants()
                         self.VarIllum = True
                     except NameError:
-                        erroModuloGenérico(str(NameError))
+                        erroModuloGenerico(str(NameError))
                 else:
-                    erroImagemNaoCarregada()
-        else:
-            erroModuloGenérico()
+                    erro_Illuminants()
+            else:
+                erroImagemNaoCarregada()
 
     def janelaIlluminants(self):
 
         sub = self
-        def extrairDescritoresdaImagem(v1, v2, v3, v4, v5, v6, v7, v8, v9, v0):
-            comando = "/source-code/segmentAllImagesForIlluminantMethod.py"
+
+        def extrairDescritoresdaImagem(_self, v1, v2, v3, v4, v5, v6, v7, v8, v9, v0):
+            comando =[]
             if v0:
-                Moduloilluminant("TODOS", self.path, self.marcas)
-                comando += " ACC BIC CCV EOAC LAS LCH SASI SPYTEC UNSER"
+                comando = [ "acc","bic", "ccv", "eoac", "las", "lch", "sasi", "spytec", "unser"]
+
             else:
                 if v1:
-                    Moduloilluminant("acc",self.path, self.marcas)
-                    comando += " ACC"
+                    comando.append("acc")
 
                 if v2:
-                    Moduloilluminant("bic", self.path, self.marcas)
-                    comando += " BIC"
+                        comando.append("bic")
 
                 if v3:
-                    Moduloilluminant("ccv", self.path, self.marcas)
-                    comando += " CCV"
+                    comando.append("ccv")
+
                 if v4:
-                    Moduloilluminant("eoac", self.path, self.marcas)
-                    comando += " EOAC"
+                    comando.append("eoac")
 
                 if v5:
-                    Moduloilluminant("las", self.path, self.marcas)
-                    comando += " LAS"
+                    comando.append("las")
 
                 if v6:
-                    Moduloilluminant("lch", self.path, self.marcas)
-                    comando += " LCH"
+                    comando.append("lch")
+
                 if v7:
-                    Moduloilluminant("sasir", self.path, self.marcas)
-                    comando += " SASIR"
+                    comando.append("sasi")
 
                 if v8:
-                    Moduloilluminant("spytec", self.path, self.marcas)
-                    comando += " SPYTEC"
+                    comando.append("spytec")
 
                 if v9:
-                    Moduloilluminant("unser", self.path, self.marcas)
-                    comando += " UNSER"
-            print(comando)
+                    comando.append("UNSER")
+            resultado = Moduloilluminant(comando, self.path, self.marcas)
+            janelaResultado(_self,resultado)
+            _self.fecharJanelasSubordinadas("Illuminants")
+
+        def janelaResultado(_self, resultado):
+
+            outClassification, votesNormal, votesFake, finalClass = resultado
+
+            normal = IntVar()
+            normal.set(votesNormal)
+            fake = IntVar()
+            fake.set(votesFake)
+            final = IntVar()
+            final.set(finalClass)
+            #saida = IntVar()
+            #saida.set(outClassification)
+
+
+            _self.j_Resultilluminants = Toplevel(self.interface)
+            _self.j_Resultilluminants .title("Resultado")
+            _self.j_Resultilluminants.wm_protocol("WM_DELETE_WINDOW", lambda: _self.fecharJanelasSubordinadas("resultadoIllu"))
+            _self.j_Resultilluminants .resizable(width=FALSE, height=FALSE)
+            Label(_self.j_Resultilluminants , text="Resultado:", anchor=CENTER)
+            Label(_self.j_Resultilluminants, text="Normal :").grid(column=0, row=1)
+            Label(_self.j_Resultilluminants, text="Modificada :").grid(column=0, row=2)
+            Label(_self.j_Resultilluminants, text="Classificação Final:").grid(column=0, row=3)
+            Label(_self.j_Resultilluminants, textvariable = normal).grid(column=1, row=1)
+            Label(_self.j_Resultilluminants, textvariable = fake).grid(column=1, row=2)
+            Label(_self.j_Resultilluminants, textvariable = final).grid(column=1, row=3)
+            #Label(_self.j_Resultilluminants, textvariable = saida).grid(column=1, row=4)
+            Button(_self.j_Resultilluminants, underline=0, text=u"Fechar", command=lambda: _self.fecharJanelasSubordinadas("resultadoIllu")).grid(row=5, column=1)
 
         def janelaModulosExtracao(_self):
+
+            def executar():
+                extrairDescritoresdaImagem(_self, var1.get(), var2.get(), var3.get(), var4.get(), var5.get(), var6.get(), var7.get(), var8.get(), var9.get(), var0.get())
 
             def verificaChkBox():
                 if var0.get():
@@ -429,68 +458,11 @@ class Cetico():
 
             Checkbutton(_self.j_illuminants, anchor=W, text="TODOS", variable=var0, offvalue=0,
                         width=20, command=verificaChkBox).grid(column=0, row=10)
-            Button(_self.j_illuminants, underline= 0, text=u"Cancelar", command=lambda : _self.fecharJanelasSubordinadas("Illuminants")).grid(row=10, column=1)
+            Button(_self.j_illuminants, underline= 0, text=u"Cancelar", command=lambda: _self.fecharJanelasSubordinadas("Illuminants")).grid(row=10, column=1)
             Button(_self.j_illuminants, underline= 2,text=u"Executar",
-                   command=lambda: extrairDescritoresdaImagem(var1.get(), var2.get(), var3.get(), var4.get(), var5.get(), var6.get(), var7.get(), var8.get(), var9.get(), var0.get())).grid(row=10, column=2)
+                   command=executar).grid(row=10, column=2)
 
-        def janelaModulosSegmentar(_self):
-
-            '''
-            Módulos Vole
-            Bayesian:	Bayesian illuminant estimator.
-            cache_adm:	Cache administration tool
-            felzenszwalb:	Superpixel segmentation by Felzenszwalb and Huttenlocher.
-            grayworld:	Generalized Gray World illuminant estimator.
-            gwOrig:	Perform original (orthodox) Grayworld on a single image (no superpixels).
-            iebv2:	Illuminant Estimation by Voting (modularized version)
-            iic_funt:	Evaluation of IIC-based methods on the Ciurea/Funt database
-            lbayesian:	Locally applied illuminant estimator, using the generalized Bayesian algorithm.
-            lcolfield:	Local Coloring of Illuminant Estimates
-            lgrayworld:	Locally applied illuminant estimator, using the generalized Gray World algorithm.
-            liebv:	Locally applied illuminant estimator, using IEBV.
-            ltan:	Locally applied illuminant estimator, using IEBV.
-            srgb2rgb:	Convert an sRGB image to RGB
-            tanOrig:	Perform original (orthodox) Tan on a single image (no superpixels).
-            test_cache:	Illuminant Estimation by Voting (modularized version)
-            veksler:	Superpixel segmentation by Veksler et al..'''
-
-            def verificaRadioButton(modulo):
-                print(modulo.get())
-
-
-                if modulo.get() == "Illu":
-                    valores = [modulo.get(), "", "", "", ""]
-                    Moduloilluminant("segmentar", valores, self.path, self.marcas)
-
-            _self.j_Segmentar = Toplevel(self.interface)
-            _self.j_Segmentar.wm_protocol("WM_DELETE_WINDOW", lambda: _self.fecharJanelasSubordinadas("Illuminants"))
-
-            MODES = [
-                ("Illuminant Method", "Illu"),
-                ("Bayesian", "Bayesian"),
-                ("Felzenszwalb", "felzenszwalb"),
-                ("Grayworld", "grayworld"),
-                ("Grayworld Original", "gwOrig"),
-                ("IIC-based methods", "iic_funt"),
-                ("Local Coloring of Illuminant Estimates", "lcolfield"),
-                ("Locally grayworld", "lgrayworld"),
-                ("Locally applied illuminant estimator, using IEBV", "liebv"),
-                ("Locally applied illuminant estimator, using Tan", "ltan"),
-                ("SRGB 2 RGB", "srgb2rgb"),
-                ("Original Tan Method (sem superpixels)", "tanOrig/"),
-                ("Veksler", "veksler")]
-
-            v = StringVar()
-            buttom = Button(_self.j_Segmentar, underline=2, text=u"Executar", command=lambda: verificaRadioButton(v))
-            buttom.pack(anchor=W)
-            for text, mode in MODES:
-
-                b = Radiobutton(_self.j_Segmentar, text=text,variable=v, value=mode)
-                b.pack(anchor=W)
-
-
-
-       # janelaModulosSegmentar(sub)
+        janelaModulosExtracao(self)
 
 
 
@@ -498,7 +470,10 @@ class Cetico():
         if janela =="Illuminants":
             self.VarIllum = False
             self.j_illuminants.destroy()
-            self.j_Segmentar.destroy()
+
+        if janela == "resultadoIllu":
+            self.VarIllum = False
+            self.j_Resultilluminants.destroy()
 
         if janela =="Sobre":
             self.Varabout = False
@@ -511,7 +486,6 @@ class Cetico():
         if janela =="Lista":
             self.VarLVetW = False
             self.vetReceb.destroy()
-
 
 def main():
     root = Tk()

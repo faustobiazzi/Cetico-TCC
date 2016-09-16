@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Apr 15 01:03:58 2016
-
+Modified on Sun Sep 18 08:42:55 2016
 @author: Fausto Biazzi de Sousa
 @modulo: erros de sistema
 @programa: "Cético"
 
 """
 from tkinter import messagebox
+from tkinter import *
 
 def erroAbrirArquivo():
     try:
@@ -24,7 +25,7 @@ def erroImp_Detecface():
         messagebox.showerror("ERRO!" , "Não foi possivel detectar faces")
     except:
         print("ERRO!", "Não foi possivel detectar faces")
-def erroModuloGenérico(erro):
+def erroModuloGenerico(erro):
     try:
         messagebox.showerror("ERRO!" , "Não executar o módulo selecionado. ("+erro+")")
     except:
@@ -65,3 +66,17 @@ def erro_RetornoGenerico():
         messagebox.showerror("ERRO!", "Não foi possivel retornar os dados")
     except:
         print ("ERRO!", "Não foi possivel retornar os dados.")
+
+def erro_Illuminants():
+    try:
+        messagebox.showerror("Illuminants!", "Não existem marcações na imagem.\n Marque os pontos a serem analisados antes de entrar na função")
+    except:
+        print ("ERRO!", "Há marcações suficientes na imagem. Marque ao menos dois pontos a serem analisados antes de entrar na função.")
+
+def analiseIlluminantsterminada():
+    try:
+        messagebox.showwarning("Illuminants!",
+                             "Extração Concluida.")
+    except:
+        print("Aviso!",
+              "Extração concluida.")

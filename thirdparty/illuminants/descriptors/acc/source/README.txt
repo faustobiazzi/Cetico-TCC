@@ -36,7 +36,6 @@ Para implementar o seu descritor, use como exemplo o descritor GCH (Global Color
     - Digite 'make prog', sendo 'prog' o nome do arquivo '.c' que você deseja compilar (sem a extensão '.c')
     - O executável é gerado no diretório 'bin'
 
-
 IMPORTANTE:
 - Lembre-se sempre de liberar toda a memória usada pelo seu descritor.
 - Tente deixar sua implementação bastante rápida, pois o tempo de execução do descritor será medido.
