@@ -15,8 +15,8 @@ import re
 # OUT:
 #   all possible combination of faces pairs for a given image
 
-#def composeFinalFeatureVector(folder, image,descriptor="ACC",space=4,channel=3,illuminantType="GGE"):
-def composeFinalFeatureVector(folder, image,descriptor,space,channel,illuminantType):
+def composeFinalFeatureVector(folder, image,descriptor="ACC",space=4,channel=3,illuminantType="GGE"):
+#def composeFinalFeatureVector(folder, image,descriptor,space,channel,illuminantType):
     print ("illuminant type = %s %s %s %d %s"%(illuminantType, image,descriptor,space,channel))
     numberFaces = segmentImage.segmentImage(folder, image, illuminantType)
     cont = 1

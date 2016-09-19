@@ -9,6 +9,8 @@ Modified on Sun Sep 18 08:42:55 2016
 """
 from tkinter import messagebox
 from tkinter import *
+from PIL import Image, ImageTk
+import os
 
 def erroAbrirArquivo():
     try:

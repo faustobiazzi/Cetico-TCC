@@ -5,13 +5,13 @@ Created on Sun Sep 18 08:42:55 2016
 @author: Fausto Biazzi de Sousa
 @modulo: interface gráfica Cético + funções.
 @programa = "Cético"
-@versão = "Alpha 0.0.2.4"
+@versão = "Alpha 0.0.2.5"
 
 """
 
 
 programa = "Cético"
-versao = "Alpha 0.0.2.3"
+versao = "Alpha 0.0.2.5"
 
 from funcoes import *
 from __error import *
@@ -33,6 +33,12 @@ class Cetico():
     Varabout = False
     VarFDetc = False
     VarIllum = False
+    VarMenu = False
+    VarCanvas = False
+    janelas = []
+    areaImgH = 0
+    areaImgW = 0
+
 
     def __init__(self, master):
 
@@ -51,87 +57,184 @@ class Cetico():
         # redimendiona janela pro tamanho definido
         self.interface.geometry("%dx%d" % (w, h))
 
+        self.ocultarMenu()
+
+        self.criarCanvas()
+        # hotkeys
+        # FUNCTIONS KEYS
+        self.interface.bind_all("<F1>", lambda e: dialogo())
+        self.interface.bind_all("<Control-F6>", lambda e: self.ocultarMenu())
+        self.interface.bind_all("<Control-Alt-M>", lambda e: self.ocultaCanvas())
+        self.interface.bind_all("<Control-Alt-m>", lambda e: self.ocultaCanvas())
+
+        # control + key min
+        self.interface.bind_all("<Control-a>", lambda e: self.abrirImagem())
+        self.interface.bind_all("<Control-q>", lambda e: self.fecharImagem())
+        self.interface.bind_all("<Control-d>", lambda e: self.configDetecta())
+        self.interface.bind_all("<Control-r>", lambda e: self.removeUltimaMarca())
+        self.interface.bind_all("<Control-l>", lambda e: self.limparTodasMarcas())
+        self.interface.bind_all("<Control-g>", lambda e: self.gerarRelatorios())
+        self.interface.bind_all("<Control-p>", lambda e: self.imprimir())
+
+
+        # control + key caps
+        self.interface.bind_all("<Control-A>", lambda e: self.abrirImagem())
+        self.interface.bind_all("<Control-Q>", lambda e: self.fecharImagem())
+        self.interface.bind_all("<Control-D>", lambda e: self.configDetecta())
+        self.interface.bind_all("<Control-R>", lambda e: self.removeUltimaMarca())
+        self.interface.bind_all("<Control-L>", lambda e: self.limparTodasMarcas())
+        self.interface.bind_all("<Control-G>", lambda e: self.gerarRelatorios())
+        self.interface.bind_all("<Control-P>", lambda e: self.imprimir())
+
+    # comandos de área de trabalho
+    def ocultarMenu(self):
+        if self.VarMenu:
+            self.interface.config(menu="")
+            self.VarMenu = False
+        else:
+            self.VarMenu = True
+
+            # criação do menu
+
+            # menu arquivo
+            menubar = Menu(self.interface)
+
+
+            # menu arquivo
+            filemenu = Menu(menubar, tearoff=0)
+            filemenu.add_command(label="Carregar imagem", underline=0, command=self.abrirImagem, accelerator="Ctrl+A")
+            filemenu.add_command(label="Fechar imagem", underline=0, command=self.fecharImagem, accelerator="Ctrl+Q")
+            filemenu.add_separator()
+            filemenu.add_command(label="Gerar relatório", command = self.imprimir, accelerator="Ctrl+G")
+            filemenu.add_command(label="Imprimir relatório", command = self.gerarRelatorios, accelerator="Ctrl+P")
+            filemenu.add_separator()
+            filemenu.add_command(label="Sair", underline=3, command=dialogofechar, accelerator="Alt+F4")
+            menubar.add_cascade(label="Arquivo", underline=0, menu=filemenu)
+
+            # menu exibir
+            # viewmenu = Menu(menubar, tearoff=0)
+            # viewmenu.add_command(label="Zoom +", command=dialogo)
+            # viewmenu.add_command(label="Zoom -", command=dialogo)
+            # viewmenu.add_command(label="Ajustar imagem a janela", command=dialogo)
+            # viewmenu.add_separator()
+            # menubar.add_cascade(label="Exibir", underline=1, menu=viewmenu)
+
+            # menu ferramentas
+            toolsmenu = Menu(menubar, tearoff=0)
+            toolsmenu.add_command(label="Detector de rostos", command=self.configDetecta,accelerator="Ctrl+D")
+            toolsmenu.add_command(label="Ler EXIF da imagem", command=self.propriedadesImg)
+            toolsmenu.add_separator()
+
+            # entradas de menu para códigos de terceiros
+            toolsmenu.add_command(label="illuminants", command=self.illuminants)
+            toolsmenu.add_command(label="copy-move detetector", command=dialogo)
+            toolsmenu.add_command(label="fingersprint", command=dialogo)
+            toolsmenu.add_command(label="face recognition", command=dialogo)
+
+            # fim de entrada de menu para códigos de terceiros
+            toolsmenu.add_separator()
+            toolsmenu.add_command(label="Limpar Marcas", command=self.limparTodasMarcas, accelerator="Ctrl+L")
+            toolsmenu.add_command(label="Remover última Marca", command=self.removeUltimaMarca, accelerator="Ctrl+R")
+            toolsmenu.add_separator()
+            toolsmenu.add_checkbutton(label='habilitar marcação', command=self.desenharMarcasManual, variable=self.shown,
+                                      onvalue=True, offvalue=False)
+            menubar.add_cascade(label="Ferramentas", underline=0, menu=toolsmenu)
+
+            # menu Janela
+            windPrincipal = Menu(menubar, tearoff=0)
+            windPrincipal.add_command(label="Exibir/Remover Menu", command=self.ocultarMenu, accelerator="Ctrl+F6")
+            windPrincipal.add_command(label="Ocultar imagem", command=self.ocultaCanvas, accelerator="Ctrl+Alt+M")
+            #windPrincipal.add_command(label="Fechar janelas auxiliares", command=lambda:self.fecharJanelasSubordinadas("todas"))
+            menubar.add_cascade(label="Janela", underline=1, menu=windPrincipal)
+
+
+            # menu ajuda
+            helpmenu = Menu(menubar, tearoff=0)
+            helpmenu.add_command(label="Tópicos de ajuda", underline=0, command=dialogo)
+            helpmenu.add_command(label="Sobre...", underline=0, command=self.sobreCetico)
+            menubar.add_cascade(label="Ajuda", underline=1, menu=helpmenu)
+            self.interface.config(menu=menubar)
+
+    def ocultaCanvas(self):
+        if self.VarCanvas:
+            self.canvas.pack_forget()
+            self.VarCanvas = False
+        else:
+            self.canvas.pack()
+            self.VarCanvas = True
+
+    def criarCanvas(self):
+        w = self.interface.winfo_screenwidth()
+        h = self.interface.winfo_screenheight()
+
+        # redimendiona janela pro tamanho definido
+        self.interface.geometry("%dx%d" % (w, h))
+
         # area util
         self.canvasX = 0
         self.canvasY = 0
         self.canvas = Canvas(width=w, height=h, cursor="cross")
         self.canvas.pack(side="top", fill="none", expand=True)
+        self.VarCanvas = True
 
-        # criação do menu
+    def fecharJanelasSubordinadas(self, janela):
+        if janela == "Illuminants":
+            self.VarIllum = False
+            self.j_illuminants.destroy()
 
-        # menu arquivo
-        menubar = Menu(self.interface)
+        if janela == "resultadoIllu":
+            self.VarIllum = False
+            self.j_Resultilluminants.destroy()
 
-        # menu Arquivo
-        filemenu = Menu(menubar, tearoff=0)
-        filemenu.add_command(label="Carregar imagem", underline=0, command=self.abrirImagem, accelerator="Ctrl+A")
-        filemenu.add_command(label="Fechar imagem", underline=0, command=self.fecharImagem, accelerator="Ctrl+Q")
-        filemenu.add_separator()
-        filemenu.add_command(label="Gerar relatório", command=dialogo)
-        filemenu.add_separator()
-        filemenu.add_command(label="Sair", underline=3, command=dialogofechar, accelerator="Alt+F4")
-        menubar.add_cascade(label="Arquivo", underline=0, menu=filemenu)
-        # menu exibir
-        # viewmenu = Menu(menubar, tearoff=0)
-        # viewmenu.add_command(label="Zoom +", command=dialogo)
-        # viewmenu.add_command(label="Zoom -", command=dialogo)
-        # viewmenu.add_command(label="Ajustar imagem a janela", command=dialogo)
-        # viewmenu.add_separator()
-        # menubar.add_cascade(label="Exibir", underline=1, menu=viewmenu)
+        if janela == "Sobre":
+            self.Varabout = False
+            self.about.destroy()
 
-        # menu ferramentas
-        toolsmenu = Menu(menubar, tearoff=0)
-        toolsmenu.add_command(label="Detector de rostos", command=self.configDetecta)
-        toolsmenu.add_command(label="Ler EXIF da imagem", command=self.propriedadesImg)
-        toolsmenu.add_separator()
+        if janela == "Detecta":
+            self.VarFDetc = False
+            self.confDetecta.destroy()
 
-        # entradas de menu para códigos de terceiros
-        toolsmenu.add_command(label="illuminants", command=self.illuminants)
-        toolsmenu.add_command(label="copy-move detetector", command=dialogo)
-        toolsmenu.add_command(label="fingersprint", command=dialogo)
-        toolsmenu.add_command(label="face recognition", command=dialogo)
-
-        # fim de entrada de menu para códigos de terceiros
-        toolsmenu.add_separator()
-        toolsmenu.add_command(label="Limpar Marcas", command=self.limparTodasMarcas)
-        toolsmenu.add_command(label="Remover última Marca", command=self.removeUltimaMarca)
-        toolsmenu.add_separator()
-        toolsmenu.add_checkbutton(label='habilitar marcação', command=self.desenharMarcasManual, variable=self.shown,
-                                  onvalue=True, offvalue=False)
-        menubar.add_cascade(label="Ferramentas", underline=0, menu=toolsmenu)
-
-        # menu ajuda
-        helpmenu = Menu(menubar, tearoff=0)
-        helpmenu.add_command(label="Tópicos de ajuda", underline=0, command=dialogo)
-        helpmenu.add_command(label="Sobre...", underline=0, command=self.sobreCetico)
-        menubar.add_cascade(label="Ajuda", underline=1, menu=helpmenu)
-        self.interface.config(menu=menubar)
+        if janela == "Lista":
+            self.VarLVetW = False
+            self.vetReceb.destroy()
 
     # comandos de arquivo
-
     def abrirImagem(self):
-        self.path = askopenfilename(
-        filetypes=(("Todos os Arquivos", "*.*"), ("imagem JPG", "*.jpg\;*.jpeg"), ("imagem bitmap", "*.bmp"),
-                   ("imagem PNG", "*.png")),
-        title="Selecione um arquivo.")
-        if self.marcas != []:
-            try:
-                self.canvas.delete(ALL)
-                self.marcas = []
-                self.atualizarMarcas()
-                self.vetReceb.destroy()
-            except:
-                print ("erro")
-
-        self.imagem = ImageTk.PhotoImage(Image.open(self.path))
-        self.canvas.create_image(self.canvasX, self.canvasY, anchor=NW, image=self.imagem)
+        try:
+            self.path = askopenfilename(
+            filetypes=(("Todos os Arquivos", "*.*"), ("imagem JPG", "*.jpg\;*.jpeg"), ("imagem bitmap", "*.bmp"),
+                       ("imagem PNG", "*.png")),
+            title="Selecione um arquivo.")
+            if self.path !="":
+                if self.marcas != []:
+                    try:
+                        self.canvas.delete(ALL)
+                        self.marcas = []
+                        self.atualizarMarcas()
+                        self.vetReceb.destroy()
+                    except:
+                        pass
+                if not self.VarCanvas:
+                    self.ocultaCanvas()
+                self.interface.title(programa + "- Versão " + versao + " - [" + self.path + "]")
+                self.imagem = ImageTk.PhotoImage(Image.open(self.path))
+                self.canvas.create_image(self.canvasX, self.canvasY, anchor=NW, image=self.imagem)
+        except:
+            erroAbrirArquivo()
 
     def fecharImagem(self):
         self.canvas.delete("all")
         self.path = ""
+        self.interface.title(programa + "- Versão " + versao)
         if self.marcas != []:
             self.marcas = []
             self.fecharJanelasSubordinadas("Lista")
+
+    def gerarRelatorios(self):
+        dialogo()
+
+    def imprimir(self):
+        dialogo()
 
     # comandos de marcação
     def desenharMarcasManual(self):
@@ -156,7 +259,7 @@ class Cetico():
         if self.shown.get():
             self.canvas.create_rectangle(x0, y0, x0 + w1, y0 + h1, outline=self.corManualMark, width=2)
             self.marcas.append([x0, y0, w1, h1])
-            self.atualizarMarcas()
+            #self.atualizarMarcas()
 
     def limparTodasMarcas(self):
         if self.marcas!=[]:
@@ -168,7 +271,7 @@ class Cetico():
                 self.canvas.create_image(self.canvasX, self.canvasY, anchor=NW, image=self.imagem)
                 print("marcas limpas")
                 print(self.marcas)
-            self.atualizarMarcas()
+            #elf.atualizarMarcas()
 
     def removeUltimaMarca(self):
         if messagebox.askyesno("remover última marcação",
@@ -181,7 +284,7 @@ class Cetico():
             self.canvas.create_image(self.canvasX, self.canvasY, anchor=NW, image=self.imagem)
             for (x0, y0, w1, h1) in self.marcas:
                 self.canvas.create_rectangle(x0, y0, x0 + w1, y0 + h1, fill=None, outline=self.corAutoMark, width=2)
-            self.atualizarMarcas()
+            #self.atualizarMarcas()
 
     def atualizarMarcas(self):
         if self.VarLVetW:
@@ -195,9 +298,10 @@ class Cetico():
         self.VarLVetW = True
         self.vetReceb = Tk()
         self.vetReceb.title("Coordenadas")
+        self.vetReceb.wm_attributes("-topmost", 1)
         self.vetReceb.wm_protocol("WM_DELETE_WINDOW", lambda: self.fecharJanelasSubordinadas("Lista"))
         self.vetReceb.resizable(width=FALSE, height=FALSE)
-
+        self.vetReceb.bind("<Escape>", (lambda e: self.fecharJanelasSubordinadas("Lista")))
         scrollbar = Scrollbar(self.vetReceb)
         scrollbar.pack(side=RIGHT, fill=Y)
         w = 150
@@ -231,7 +335,7 @@ class Cetico():
                                                     "\n(TCC) do Curso de graduação \nem tecnologia de Analise e" +
                                                     "Desenvolvimento\n de Sistema no IFSP-Campinas.")
             label.pack(side=TOP)
-
+            self.about.bind("<Escape>", (lambda e: self.fecharJanelasSubordinadas("Sobre")))
             button = Button(self.about, text="Fechar", underline=0, command=lambda: self.fecharJanelasSubordinadas("Sobre"))
             button.pack(side=BOTTOM)
 
@@ -266,8 +370,9 @@ class Cetico():
                 self.input4 = Entry(self.confDetecta)
 
                 button = Button(self.confDetecta, text="Fechar", underline=0, command=lambda: self.fecharJanelasSubordinadas("Detecta"))
-                button2 = Button(self.confDetecta, text="Setar Valores", underline=0, command=self.setarConfigDetecta)
-
+                button2 = Button(self.confDetecta,text="Setar Valores", underline=0, command=self.setarConfigDetecta)
+                self.confDetecta.bind("<Escape>", (lambda e: self.fecharJanelasSubordinadas("Detecta")))
+                self.confDetecta.bind("<Return>", (lambda e: self.setarConfigDetecta()))
                 label1.pack(anchor=W)
                 self.input1.insert(0, 30)
                 self.input1.pack(anchor=E)
@@ -299,8 +404,12 @@ class Cetico():
                                    "já existem marcações feitas na imagem.\n Deseja apaga-las?"):
                 self.limparTodasMarcas()
                 self.aplicaDetectaRosto(parametros)
+
+                self.fecharJanelasSubordinadas("Detecta")
             else:
                 self.aplicaDetectaRosto(parametros)
+
+                self.fecharJanelasSubordinadas("Detecta")
         else:
             self.aplicaDetectaRosto(parametros)
             self.fecharJanelasSubordinadas("Detecta")
@@ -315,7 +424,7 @@ class Cetico():
         for (x0, y0, w1, h1) in face:
             self.marcas.append([x0, y0, w1, h1])
             self.canvas.create_rectangle(x0, y0, x0 + w1, y0 + h1, fill=None, outline=self.corAutoMark, width=2)
-        self.atualizarMarcas()
+        #self.atualizarMarcas()
 
 
     # Pegar propriedade das imagens
@@ -464,33 +573,14 @@ class Cetico():
 
         janelaModulosExtracao(self)
 
-
-
-    def fecharJanelasSubordinadas(self, janela):
-        if janela =="Illuminants":
-            self.VarIllum = False
-            self.j_illuminants.destroy()
-
-        if janela == "resultadoIllu":
-            self.VarIllum = False
-            self.j_Resultilluminants.destroy()
-
-        if janela =="Sobre":
-            self.Varabout = False
-            self.about.destroy()
-
-        if janela =="Detecta":
-            self.VarFDetc = False
-            self.confDetecta.destroy()
-
-        if janela =="Lista":
-            self.VarLVetW = False
-            self.vetReceb.destroy()
-
 def main():
     root = Tk()
-    Cetico(root)
+    app = Cetico(root)
+
     root.mainloop()
+
+    root.after(1, app.abrirImagem())
 
 if __name__ == '__main__':
     main()
+

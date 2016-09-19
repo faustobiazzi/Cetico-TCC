@@ -55,8 +55,9 @@ def extractAllFeatureVectors(folder,descriptor,space,channel):
         try:
             img = fname[:-3] + "png"
             print("\nExtracting feature vectors from image ",img)
-            faces = composeFinalFeatureVector.composeFinalFeatureVector(img,descriptor,space,channel,"GGE")
-            name = ""+folder+"/illuminants/temp/vectors/fv-" + img[:-3] + "txt"
+            faces = composeFinalFeatureVector.composeFinalFeatureVector(folder,img,descriptor,space,channel,"GGE")
+
+            name = folder + "/illuminants/temp/vectors/fv-" + img[:-3] + "txt"
             command = "cp " + name + " " + npath + "/"
             print("CP em extract ALL featuresVectors "+command)
             os.system(command)

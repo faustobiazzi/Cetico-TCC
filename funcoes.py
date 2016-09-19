@@ -11,6 +11,8 @@ Modified on Sun Sep 18 08:42:55 2016
 from __error import *
 from tkinter import *
 import os
+#import loading
+
 
 
 #modulos de funções
@@ -43,6 +45,7 @@ def Moduloilluminant(operacao, imagePath, vetorDeFaces):
         funcaoIndisponivel(platform.system())
         print(platform.system())
     else:
+        #loading.main()
         print("iniciando módulo illuminants")
         limparTudo()
         print("Pastas limpas")
@@ -62,3 +65,4 @@ def Moduloilluminant(operacao, imagePath, vetorDeFaces):
         print("Concluida analise SVM")
         analiseIlluminantsterminada()
     return resultado
+
