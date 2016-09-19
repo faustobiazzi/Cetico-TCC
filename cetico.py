@@ -210,7 +210,7 @@ class Cetico():
                     try:
                         self.canvas.delete(ALL)
                         self.marcas = []
-                        self.atualizarMarcas()
+                        #self.atualizarMarcas()
                         self.vetReceb.destroy()
                     except:
                         pass

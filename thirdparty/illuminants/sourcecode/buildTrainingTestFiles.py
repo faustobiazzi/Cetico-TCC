@@ -20,8 +20,7 @@ def buildTrainingTestFiles(dataset, descriptor,space, channel,trainingFolds=[1,2
         os.makedirs(npath)
 
 
-    if (len(trainingFolds) > 0) and (trainingFolds[0] != ''):
-        fd = ""
+    if (len(trainingFolds) > 0) and (trainingFolds[0] != '')        fd = ""
         for i in trainingFolds:
             fd = fd+str(i)+"-"
         fd = fd[:-1]
