@@ -15,6 +15,7 @@ from thirdparty.illuminants.sourcecode.extractGGEMaps import extractNewGrayWorld
 from thirdparty.illuminants.sourcecode.extractIICMaps import extractIlluminantMaps
 from thirdparty.illuminants.sourcecode.extractAllFeatureVectors import main as extractAllFeatureVectors
 from thirdparty.illuminants.sourcecode.classifySVMCetico import fullClassification
+
 programa = "Cético"
 Modulo = "Illuminants"
 

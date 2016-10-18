@@ -11,13 +11,12 @@ Modified on Sun Sep 18 08:42:55 2016
 from __error import *
 from tkinter import *
 import os
-#import loading
 
 
 
 #modulos de funções
-from facedetector.detectaface import *
-from imageproperties.lerExif import lertag
+from data.facedetector.detectaface import *
+from data.imageproperties.lerExif import lertag
 from thirdparty._illuminants import *
 
 
@@ -45,7 +44,6 @@ def Moduloilluminant(operacao, imagePath, vetorDeFaces):
         funcaoIndisponivel(platform.system())
         print(platform.system())
     else:
-        #loading.main()
         print("iniciando módulo illuminants")
         limparTudo()
         print("Pastas limpas")
