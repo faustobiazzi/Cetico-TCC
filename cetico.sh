@@ -1,3 +1,3 @@
 #!/bin/bash
-python3 cetico.py
+python main.py
 

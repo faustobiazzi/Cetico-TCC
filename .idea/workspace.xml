@@ -2,76 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6af29d4b-6eb6-4712-9909-40d25c7970ec" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/facedetector/default.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/facedetector/detectaface.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/felzenszwalb/10061672391929796248.cch" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/felzenszwalb/10174973344155826054.cch" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/felzenszwalb/15757420655028205819.cch" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/felzenszwalb/17093206734578083527.cch" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/felzenszwalb/7051455418798669212.cch" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/imageproperties/lerExif.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/data-base/GGE/photoshop-com-famosos-2_fhs.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/data-base/IIC/photoshop-com-famosos-2_fhs.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/data-base/images/photoshop-com-famosos-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/data-base/segmented/photoshop-com-famosos-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/ACC-GGE-Lab-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/ACC-GGE-RGB-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/ACC-GGE-YCbCr-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/ACC-IIC-Lab-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/ACC-IIC-RGB-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/ACC-IIC-YCbCr-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/BIC-GGE-Lab-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/BIC-GGE-RGB-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/BIC-GGE-YCbCr-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/BIC-IIC-Lab-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/BIC-IIC-RGB-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/BIC-IIC-YCbCr-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/CCV-GGE-Lab-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/CCV-GGE-RGB-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/CCV-GGE-YCbCr-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/CCV-IIC-Lab-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/CCV-IIC-RGB-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/CCV-IIC-YCbCr-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/EOAC-GGE-HSV-V/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/EOAC-GGE-Lab-L/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/EOAC-GGE-YCbCr-Y/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/EOAC-IIC-HSV-V/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/EOAC-IIC-Lab-L/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/EOAC-IIC-YCbCr-Y/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/LAS-GGE-HSV-V/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/LAS-GGE-Lab-L/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/LAS-GGE-YCbCr-Y/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/LAS-IIC-HSV-V/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/LAS-IIC-Lab-L/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/LAS-IIC-YCbCr-Y/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/LCH-GGE-Lab-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/LCH-GGE-RGB-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/LCH-GGE-YCbCr-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/LCH-IIC-Lab-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/LCH-IIC-RGB-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/LCH-IIC-YCbCr-full/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/SASI-GGE-HSV-V/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/SASI-GGE-Lab-L/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/SASI-GGE-YCbCr-Y/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/SASI-IIC-HSV-V/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/SASI-IIC-Lab-L/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/SASI-IIC-YCbCr-Y/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/SPYTEC-GGE-HSV-V/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/SPYTEC-GGE-Lab-L/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/SPYTEC-GGE-YCbCr-Y/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/SPYTEC-IIC-HSV-V/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/SPYTEC-IIC-Lab-L/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/SPYTEC-IIC-YCbCr-Y/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/UNSER-GGE-HSV-V/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/UNSER-GGE-Lab-L/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/UNSER-GGE-YCbCr-Y/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/UNSER-IIC-HSV-V/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/UNSER-IIC-Lab-L/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/extracted-feature-vectors/UNSER-IIC-YCbCr-Y/fv-photoshop-com-famosos-2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/face-positions/photoshop-com-famosos-2.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/data-base/GGE/situationroom-obama_fhs.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/data-base/IIC/situationroom-obama_fhs.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/data-base/images/situationroom-obama.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/data-base/segmented/situationroom-obama.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/face-positions/situationroom-obama.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-1-acc-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-1-bic-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-1-ccv-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-1-eoac-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-1-las-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-1-lch-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-1-sasi-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-1-spytec-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-1-unser-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-1.ppm" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-2-acc-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-2-bic-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-2-ccv-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-2-eoac-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-2-las-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-2-lch-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-2-sasi-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-2-spytec-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-2-unser-descriptor.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-2.ppm" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/illuminants/temp/faces/face-3.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/funcoes.py" afterPath="$PROJECT_DIR$/funcoes.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thirdparty/_illuminants.py" afterPath="$PROJECT_DIR$/thirdparty/_illuminants.py" />
     </list>
     <ignored path="Cetico-TCC.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -90,7 +47,7 @@
     <favorites_list name="Cetico-TCC" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -105,9 +62,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-1" />
-    <option name="y" value="24" />
+    <option name="y" value="1" />
     <option name="width" value="1368" />
-    <option name="height" value="744" />
+    <option name="height" value="767" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -134,14 +91,24 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="Cetico-TCC" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cetico-TCC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cetico-TCC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -151,7 +118,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Dropbox/ball-tracking" />
   </component>
   <component name="RunManager" selected="Python.cetico">
     <configuration default="false" name="cetico" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -328,26 +295,26 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="24" width="1368" height="744" extended-state="6" />
+    <frame x="-1" y="1" width="1368" height="767" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24944155" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32880846" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -370,11 +337,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#187#208#0" expanded="true" />
-            <element signature="e#436#553#0" expanded="false" />
-            <element signature="e#595#683#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -382,17 +344,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1962">
           <caret line="115" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="140" selection-end-column="23" />
-          <folding>
-            <element signature="e#184#197#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cetico.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="569" column="57" selection-start-line="569" selection-start-column="57" selection-end-line="569" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -400,9 +351,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="115" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="140" selection-end-column="23" />
-          <folding>
-            <element signature="e#184#197#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -410,11 +358,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="19" column="37" selection-start-line="10" selection-start-column="0" selection-end-line="19" selection-end-column="37" />
-          <folding>
-            <element signature="e#187#208#0" expanded="true" />
-            <element signature="e#436#553#0" expanded="false" />
-            <element signature="e#595#683#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -422,17 +365,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="84" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
-          <folding>
-            <element signature="e#307#459#0" expanded="false" />
-            <element signature="e#494#636#0" expanded="false" />
-            <element signature="e#666#814#0" expanded="false" />
-            <element signature="e#849#1014#0" expanded="false" />
-            <element signature="e#1041#1205#0" expanded="false" />
-            <element signature="e#1244#1631#0" expanded="false" />
-            <element signature="e#1653#1863#0" expanded="false" />
-            <element signature="e#1885#2031#0" expanded="false" />
-            <element signature="e#2075#2230#0" expanded="false" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cetico.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="569" column="57" selection-start-line="569" selection-start-column="57" selection-end-line="569" selection-end-column="57" />
         </state>
       </provider>
     </entry>

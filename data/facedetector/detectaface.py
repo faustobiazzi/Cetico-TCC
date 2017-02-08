@@ -6,12 +6,12 @@ Created on Fri Apr 15 01:03:58 2016
 @programa: "Cético"
 """
 
-from __error import *
-import cv2
 import platform
-import os
+import cv2
+from error import *
 
-def detectorRosto(imagePath, propriedades):
+
+def detectFaces(imagePath, propriedades):
 
     minX, minY, minNei, scale = propriedades
     script_dir = os.path.dirname(__file__)
@@ -27,15 +27,10 @@ def detectorRosto(imagePath, propriedades):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     faces = faceCascade.detectMultiScale(
         gray,
-        #scaleFactor=1.1,
-        #minNeighbors=1,
-        #minSize=(30, 30),
         scaleFactor=scale,
         minNeighbors=minNei,
         minSize=(minX, minY),
         flags=cv2.CASCADE_SCALE_IMAGE)
-
-    print(" {0} face(s) encontrada(s) automáticamente!".format(len(faces)))
     try:
         return faces
     except:
