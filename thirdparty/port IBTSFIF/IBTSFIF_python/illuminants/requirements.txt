@@ -1,0 +1,7 @@
+numpy>=1.21
+opencv-python>=4.5
+scikit-image>=0.19
+scikit-learn>=1.0
+pillow>=9.0
+matplotlib>=3.5
+tqdm
